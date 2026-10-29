@@ -1,2 +1,7 @@
+shellEmulator: true
+
 packages:
   - playground
+
+allowBuilds:
+  lefthook: true

@@ -1,14 +1,11 @@
 import createError from '@fastify/error'
 
-export const MissingBotTokenError = createError(
-  'FST_ERR_TMA_MISSING_BOT_TOKEN',
-  'Missing bot token',
+export const InvalidOptionsError = createError(
+  'FST_ERR_TMA_INVALID_OPTIONS',
+  'Invalid fastify-tma options: %s',
 )
-export const InvalidAuthDataError = createError(
-  'FST_ERR_TMA_INVALID_AUTH_DATA',
-  'Invalid auth data',
-)
-export const InvalidAuthTypeError = createError(
-  'FST_ERR_TMA_INVALID_AUTH_TYPE',
-  'Invalid authorization header',
+export const UnauthorizedError = createError(
+  'FST_ERR_TMA_UNAUTHORIZED',
+  'Unauthorized',
+  401,
 )
