@@ -23,7 +23,8 @@
   },
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "docs/migration.md"
   ],
   "engines": {
     "node": "^22.0.0 || ^24.0.0 || ^26.0.0"

@@ -86,6 +86,15 @@ assert.equal(metadata.peerDependencies.fastify, '^5.0.0')
 await access(new URL(metadata.exports['.'].types, packageRoot))
 await assert.rejects(access(new URL('src/index.ts', packageRoot)), { code: 'ENOENT' })
 
+const readme = await readFile(new URL('README.md', packageRoot), 'utf8')
+const migrationLink = readme.match(/\\[migration guide\\]\\(([^)]+)\\)/)?.[1]
+assert.ok(migrationLink, 'Installed README must link to migration guidance')
+const migrationGuide = await readFile(new URL(migrationLink, packageRoot), 'utf8')
+assert.ok(migrationGuide.includes('request.tmaValidate()'))
+assert.ok(migrationGuide.includes('fastify.tmaAuth'))
+assert.ok(migrationGuide.includes('user.first_name'))
+assert.ok(migrationGuide.includes('ESM'))
+
 const botToken = '123456789:AAInstalledConsumerToken'
 const authDate = Math.floor(Date.now() / 1000)
 const params = new URLSearchParams({
