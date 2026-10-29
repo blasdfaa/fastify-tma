@@ -3,5 +3,10 @@ shellEmulator: true
 packages:
   - playground
 
+# Patched development-tool dependencies; see the release-readiness audit.
+overrides:
+  giget>tar: ^7.5.22
+  micromark-extension-math>katex: ^0.18.2
+
 allowBuilds:
   lefthook: true

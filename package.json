@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.build.json",
-    "check": "pnpm lint && pnpm test && pnpm build",
+    "check": "pnpm lint && pnpm test && pnpm build && pnpm test:package",
     "dev": "vitest dev",
     "lint": "eslint .",
     "prepare": "lefthook install",
@@ -39,6 +39,7 @@
     "test": "pnpm test:unit && pnpm test:types",
     "test:unit": "vitest --run",
     "test:coverage": "vitest run --coverage",
+    "test:package": "node --test test/package.test.mjs",
     "test:types": "tsc --noEmit"
   },
   "peerDependencies": {
@@ -54,6 +55,7 @@
     "@types/node": "^22.20.5",
     "@vitest/coverage-v8": "5.0.5",
     "bumpp": "^12.3.0",
+    "changelogithub": "^15.0.5",
     "eslint": "^10.13.0",
     "fastify": "^5.12.7",
     "lefthook": "2.2.2",

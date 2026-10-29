@@ -1,5 +1,8 @@
 name: CI workflow
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     branches:
@@ -14,11 +17,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
         with:
-          node-version: lts/*
+          node-version: 24
+          check-latest: true
           cache: pnpm
 
       - name: 📦 Install dependencies
@@ -32,17 +36,18 @@ jobs:
 
     strategy:
       matrix:
-        node: [lts/*]
+        node-version: [22, 24, 26]
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - uses: actions/checkout@v4
-      - run: corepack enable
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
+          check-latest: true
           cache: pnpm
 
       - name: 📦 Install dependencies
@@ -53,3 +58,10 @@ jobs:
 
       - name: 🧪 Test project
         run: pnpm test
+
+      - name: 📦 Test installed package
+        run: pnpm test:package
+
+      - name: 📊 Test coverage
+        if: matrix.node-version == 24 && matrix.os == 'ubuntu-latest'
+        run: pnpm test:coverage

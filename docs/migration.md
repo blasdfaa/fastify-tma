@@ -75,7 +75,7 @@ pnpm check
 pnpm test:coverage
 ```
 
-`pnpm check` includes the installed packed ESM consumer and its NodeNext type checks. See the [development commands](../README.md#development) for individual checks. To use the local workspace package in the playground:
+`pnpm check` includes the installed packed ESM consumer and its NodeNext type checks. See the [development commands](../README.md#development) for individual checks. Set `BOT_TOKEN` in your environment to use the local workspace package in the playground:
 
 ```bash
 pnpm build

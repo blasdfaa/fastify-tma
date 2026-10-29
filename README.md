@@ -134,7 +134,7 @@ The build uses plain `tsc` with NodeNext resolution and emits `.js` and `.d.ts` 
 pnpm pack
 ```
 
-The playground uses the local package through `workspace:*` and its compiled exports. Build before starting it:
+The playground uses the local package through `workspace:*` and its compiled exports. Set `BOT_TOKEN` in your environment, then build before starting it:
 
 ```bash
 pnpm build

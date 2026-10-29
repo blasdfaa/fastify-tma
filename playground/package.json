@@ -2,10 +2,14 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "fastify start index.js -L -l -P -w"
+    "dev": "fastify start index.js --log-level info --pretty-logs --watch"
   },
   "dependencies": {
-    "fastify": "latest",
-    "fastify-tma": "latest"
+    "fastify": "^5.12.7",
+    "fastify-tma": "workspace:*"
+  },
+  "devDependencies": {
+    "fastify-cli": "^8.0.3",
+    "pino-pretty": "^13.2.0"
   }
 }
